@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Game</title>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <style>
-        body {
-            margin: 0;
-            background-color: #f0f0f0;
-            overflow: hidden;
-        }
-        #player {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    .swf-container {
+      width: 100%;
+      height: 100%;
+    }
+    object {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-    <div id="player"></div>
-    <script>
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        document.getElementById("player").appendChild(player);
-        
-        player.load("Portal_wcs2.swf").catch(console.error);
+  <div class="swf-container">
+    <object data="swf/portal.swf" type="application/x-shockwave-flash"></object>
+  </div>
 
-        // Request full screen when the player is clicked
-        document.getElementById("player").addEventListener("click", () => {
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-                document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-                document.documentElement.msRequestFullscreen();
-            }
-        });
-    </script>
+  <!-- Load Ruffle from unpkg -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    RufflePlayer.config = {
+      autoplay: "on",
+      allowScriptAccess: "always"
+    };
+
+    const ruffle = window.RufflePlayer.newest();
+    const container = document.querySelector('.swf-container object');
+    ruffle.createPlayer(container);
+  </script>
 </body>
 </html>
