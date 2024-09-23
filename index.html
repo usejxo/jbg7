@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Game</title>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script src="ruffle/ruffle.js"></script>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            overflow: hidden;
         }
         #player {
-            width: 800px; /* Adjust as necessary */
-            height: 600px; /* Adjust as necessary */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
         }
     </style>
 </head>
@@ -27,7 +27,20 @@
         const player = ruffle.createPlayer();
         document.getElementById("player").appendChild(player);
         
-        player.load("Portal_wcs2.swf").catch(console.error);
+        player.load("portal.swf").catch(console.error);
+
+        // Request full screen when the player is clicked
+        document.getElementById("player").addEventListener("click", () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        });
     </script>
 </body>
 </html>
