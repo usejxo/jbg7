@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Game</title>
+    <script src="ruffle/ruffle.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #player {
+            width: 800px; /* Adjust as necessary */
+            height: 600px; /* Adjust as necessary */
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+    <script>
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        document.getElementById("player").appendChild(player);
+        
+        player.load("portal.swf").catch(console.error);
+    </script>
+</body>
+</html>
