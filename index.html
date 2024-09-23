@@ -10,29 +10,26 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: black;
+      overflow: hidden;
     }
     .swf-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
-    object {
+    embed {
       width: 100%;
       height: 100%;
-      max-width: 100vw;
-      max-height: 100vh;
+      display: block;
     }
   </style>
 </head>
 <body>
   <div class="swf-container">
-    <object data="Portal_wcs2.swf" type="application/x-shockwave-flash"></object>
+    <embed src="Portal_wcs2.swf" type="application/x-shockwave-flash">
   </div>
 
   <!-- Load Ruffle from unpkg -->
@@ -45,7 +42,7 @@
     };
 
     const ruffle = window.RufflePlayer.newest();
-    const container = document.querySelector('.swf-container object');
+    const container = document.querySelector('.swf-container embed');
     ruffle.createPlayer(container);
   </script>
 </body>
